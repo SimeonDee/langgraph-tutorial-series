@@ -2,6 +2,9 @@ import os
 from typing import List, TypedDict, Union
 from langgraph.graph import StateGraph
 from IPython.display import display, Image
+from pprint import PrettyPrinter
+
+printer = PrettyPrinter(indent=3)
 
 """
 Demonstrate Multiple Inputs Graph
@@ -110,56 +113,6 @@ graph.set_finish_point("farewell")
 app = graph.compile()
 
 ##############################################
-# Executing the Graph (application)
-##############################################
-"""
-- Setting up the graph with a starting state
-"""
-
-initial_state = AgentState(
-    numbers=[1, 2, 3, 4, 5],
-    user_name="Sanjo",
-    operation="sum",
-    result=0,
-    message="",
-)
-
-# Executing the application
-result = app.invoke(initial_state)
-
-# Alternatively, you can invoke the application with a different
-# initial state as a dict
-# Uncomment the line below to test with a different operation
-# result = app.invoke(
-#     {
-#         "numbers": [10, 20, 30],
-#         "user_name": "Ade",
-#         "operation": "product",
-#         "result": 0,
-#         "message": "",
-#     }
-# )  # noqa: E501
-
-
-##############################################
-# Displaying the result
-##############################################
-
-print("Final Result:")
-print(f"Numbers: {result['numbers']}")
-print(f"User Name: {result['user_name']}")
-print(f"Operation: {result['operation']}")
-print(f"Result: {result['result']}")
-print(f"Message: {result['message']}")
-print("\n---\n")
-
-# Displaying the final result
-print("Final Agent State:")
-print(result)
-print("\n---\n")
-
-
-##############################################
 # Displaying and Saving the graph structure
 ##############################################
 """
@@ -177,3 +130,60 @@ display(Image(graph_image))
 outpute_path = os.path.join("src", "ex2", "graph_structure_ex2.png")
 app.get_graph().draw_mermaid_png(output_file_path=outpute_path)
 print(f"Graph Structure saved as {outpute_path}")
+print("\n---\n")
+
+
+##############################################
+# Executing the Graph (application)
+##############################################
+
+
+def main():
+    """
+    Main function to execute the application with an initial state.
+    """
+    # Setting up the initial state
+    initial_state = AgentState(
+        numbers=[1, 2, 3, 4, 5],
+        user_name="Sanjo",
+        operation="sum",
+        result=0,
+        message="",
+    )
+
+    # Executing the application
+    result = app.invoke(initial_state)
+
+    # Alternatively, you can invoke the application with a different
+    # initial state as a dict
+    # Uncomment the line below to test with a different operation
+    # result = app.invoke(
+    #     {
+    #         "numbers": [10, 20, 30],
+    #         "user_name": "Ade",
+    #         "operation": "product",
+    #         "result": 0,
+    #         "message": "",
+    #     }
+    # )  # noqa: E501
+
+    ##############################################
+    # Displaying the result
+    ##############################################
+
+    print("Final Result:")
+    print(f"Numbers: {result['numbers']}")
+    print(f"User Name: {result['user_name']}")
+    print(f"Operation: {result['operation']}")
+    print(f"Result: {result['result']}")
+    print(f"Message: {result['message']}")
+    print("\n---\n")
+
+    # Displaying the final agent state
+    print("Final Agent State:")
+    printer.pprint(result)
+    print("\n---\n")
+
+
+if __name__ == "__main__":
+    main()

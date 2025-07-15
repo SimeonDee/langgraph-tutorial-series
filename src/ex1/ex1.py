@@ -78,25 +78,6 @@ graph.set_finish_point("farewell")
 # Compile the graph into an application
 app = graph.compile()
 
-#############################################
-# Executing the Graph (application)
-#############################################
-"""
-- This will invoke the graph with an initial state
-"""
-
-# Executing the application
-initial_state = AgentState(message="Sanjo")
-result = app.invoke(initial_state)
-
-# Alternatively, you can invoke the application with a different
-# initial state as a dict
-# Uncomment the line below to test with a different message
-# result = app.invoke({"message": "Ade"})
-
-print(result)
-
-
 ##############################################
 # Displaying and Saving the graph structure
 ##############################################
@@ -115,3 +96,29 @@ display(Image(graph_image))
 outpute_path = os.path.join("src", "ex1", "graph_structure_ex1.png")
 app.get_graph().draw_mermaid_png(output_file_path=outpute_path)
 print(f"Graph Structure saved as {outpute_path}")
+
+
+##############################################
+# Main
+##############################################
+
+
+def main():
+    # Setting up initial state of the application
+    initial_state = AgentState(message="Sanjo")
+
+    # Invoking the application with the initial state
+    result = app.invoke(initial_state)
+
+    # Alternatively, you can invoke the application with a different
+    # initial state as a dict
+    # Uncomment the line below to test with a different message
+    # result = app.invoke({"message": "Ade"})
+
+    print("\n---\n")
+    print(result)
+    print("\n---\n")
+
+
+if __name__ == "__main__":
+    main()
