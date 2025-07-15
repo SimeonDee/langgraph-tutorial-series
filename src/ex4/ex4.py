@@ -10,7 +10,7 @@ Main Goal:
 - Learn how to use "conditional_edges".
 
 Objectives:
-- Implemente 'conditional logic' to route the flow of data to different nodes.
+- Implement 'conditional logic' to route the flow of data to different nodes.
 - Use 'START' and 'END' nodes to manage entry and exit points explicitly.
 - Design multiple nodes to perform different arithmetic operations: \
  (addition (+), substraction (-), multiplication (*), division (/))
