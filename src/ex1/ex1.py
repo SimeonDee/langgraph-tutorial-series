@@ -6,6 +6,7 @@ Demonstration of a simple state graph using LangGraph.
 - It includes the definition of the state, nodes, and the graph structure.
 """
 
+import os
 from typing import TypedDict
 from langgraph.graph import StateGraph
 from IPython.display import display, Image
@@ -96,20 +97,21 @@ result = app.invoke(initial_state)
 print(result)
 
 
-#############################################
-# Displaying the graph structure
-#############################################
+##############################################
+# Displaying and Saving the graph structure
+##############################################
 """
-- Displaying the graph
-Note: 
-- The graph is displayed using the Mermaid syntax, \
-    which is a simple markdown-like script language \
-    for generating charts and diagrams.
-- The graph will be rendered as an image in the notebook.
-- This is useful for visualizing the flow of the graph and \
-    understanding how the nodes are connected.
-- To be run in a Jupyter notebook or similar environment that \
-    supports IPython display.
+NOTE:
+- Internet connection is required to display or save the graph.
+- The graph structure can be visualized using the draw_mermaid_png method.
+- This will generate a PNG image of the graph structure.
 """
 
-display(Image(app.get_graph().draw_mermaid_png()))
+# Displaying the graph as an image
+graph_image = app.get_graph().draw_mermaid_png()
+display(Image(graph_image))
+
+# Save the graph structure
+outpute_path = os.path.join("src", "ex1", "graph_structure_ex1.png")
+app.get_graph().draw_mermaid_png(output_file_path=outpute_path)
+print(f"Graph Structure saved as {outpute_path}")
