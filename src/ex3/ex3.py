@@ -35,6 +35,7 @@ Requirements:
 
 printer = PrettyPrinter(indent=3, sort_dicts=False)
 
+
 ###########
 # State
 ###########
@@ -89,6 +90,7 @@ def list_skills_node(state: AgentState) -> AgentState:
 # Graph
 ###########
 
+
 graph = StateGraph(state_schema=AgentState)
 
 # Add nodes
@@ -105,15 +107,18 @@ graph.set_finish_point("list_skills")
 
 app = graph.compile()
 
+
 ##############################################
 # Displaying and Saving the graph structure
 ##############################################
+
 """
 NOTE:
 - Internet connection is required to display or save the graph.
 - The graph structure can be visualized using the draw_mermaid_png method.
 - This will generate a PNG image of the graph structure.
 """
+
 
 # Displaying the graph as an image (will only disolay in Jupyter Notebook)
 # graph_image = app.get_graph().draw_mermaid_png()
