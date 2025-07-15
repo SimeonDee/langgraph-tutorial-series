@@ -138,7 +138,7 @@ print("\n---\n")
 ##############################################
 
 
-def main():
+def main(app: StateGraph):
     """
     Main function to execute the application with an initial state.
     """
@@ -186,4 +186,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(app)

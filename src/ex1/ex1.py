@@ -103,7 +103,7 @@ print(f"Graph Structure saved as {outpute_path}")
 ##############################################
 
 
-def main():
+def main(app: StateGraph):
     # Setting up initial state of the application
     initial_state = AgentState(message="Sanjo")
 
@@ -121,4 +121,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(app)
