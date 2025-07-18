@@ -102,9 +102,22 @@ def loop_decider_router(state: AgentState) -> str:
     """
     if len(state["messages"]) == 0:
         return "input"
+    # Check if the last message is a human message
+    if not state["messages"] or not isinstance(state["messages"][-1], dict):
+        return "input"
     if not isinstance(state["messages"][-1], HumanMessage):
         return "input"
-    if state["messages"][-1].content.lower() in ["quit", "exit", "q"]:
+    # Check if the last message is a farewell or exit command
+    # This is a simple check, you can expand it to include more variations
+    if state["messages"][-1].content.lower() in [
+        "quit",
+        "exit",
+        "q",
+        "bye",
+        "goodbye",
+        "stop",
+        "end",
+    ]:
         return "exit"
     else:
         return "continue"
@@ -117,7 +130,7 @@ def farewell_node(state: AgentState) -> AgentState:
     Returns:
         AgentState: The state after the farewell message.
     """
-    print(f"\nAI: Goodbye, {state["username"]}!\n\n")
+    print(f"AI: Goodbye, {state["username"]}!\n\n")
     return state
 
 
@@ -132,13 +145,11 @@ graph = StateGraph(state_schema=AgentState)
 graph.add_node("query_getter", get_user_input_node)
 graph.add_node("response_getter", get_response_node)
 graph.add_node("farewell", farewell_node)
-graph.add_node("router", lambda state: state)
 
 # Add edges
 graph.add_edge(START, "query_getter")
-graph.add_edge("query_getter", "router")
 graph.add_conditional_edges(
-    "router",
+    "query_getter",
     loop_decider_router,
     {
         "input": "query_getter",
@@ -146,6 +157,7 @@ graph.add_conditional_edges(
         "exit": "farewell",
     },
 )
+graph.add_edge("response_getter", "query_getter")
 graph.add_edge("farewell", END)
 
 agent = graph.compile()
@@ -156,13 +168,8 @@ agent = graph.compile()
 ################
 
 
-def main(agent: StateGraph) -> None:
+def main(agent: StateGraph, initial_state: AgentState) -> None:
     """Executes the agent graph."""
-    # Intializing the state
-    initial_state = AgentState(
-        username="Kunle",
-        messages=[SystemMessage(content="You are a helful AI Assistant.")],
-    )
 
     print("\nInitial State:")
     printer.pprint(initial_state)
@@ -175,4 +182,9 @@ def main(agent: StateGraph) -> None:
 
 
 if __name__ == "__main__":
-    main(agent)
+    # Intializing the state
+    initial_state = AgentState(
+        username="Kunle",
+        messages=[SystemMessage(content="You are a helful AI Assistant.")],
+    )
+    main(agent, initial_state)
