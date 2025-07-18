@@ -18,8 +18,8 @@ Objectives:
 
 """
 Problem Description:
-    You are tasked with implementing an Guess A Number Game
-    ('Automatic Higher or Lower').
+    You are tasked with implementing "Guess A Number Game"
+    with integrated hinter (Automatic 'higher' or 'lower' hinter).
 
 Requirements:
 - Set the bound to be between 1 and 20.
