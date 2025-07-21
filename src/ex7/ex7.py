@@ -1,6 +1,16 @@
 """
-AI Agents using LangGraph
-================================
+Simple AI Agents using LangGraph (Naive Implementation)
+========================================================
+
+Demonstrating Building Simple Agent Graph Implementation - Part1
+
+Main Goal: Learn how to integrate AI Agent into Graph.
+
+Objectives:
+- Implement Agent into graph.
+- Reiterate the graph until the user decides to exit.
+- Create a simple agent that can respond to user input.
+- Use LangGraph to manage the state and flow of the agent.
 """
 
 import os
@@ -19,6 +29,7 @@ from langchain_core.messages import (
 )
 
 from dotenv import load_dotenv
+
 
 load_dotenv()
 # Set environment variables
@@ -102,11 +113,13 @@ def loop_decider_router(state: AgentState) -> str:
     """
     if len(state["messages"]) == 0:
         return "input"
-    # Check if the last message is a human message
-    if not state["messages"] or not isinstance(state["messages"][-1], dict):
-        return "input"
-    if not isinstance(state["messages"][-1], HumanMessage):
-        return "input"
+    # # Check if the last message is a human message
+    # if not state["messages"] or not isinstance(state["messages"][-1], dict):
+    #     return "input"
+
+    # if not isinstance(state["messages"][-1], HumanMessage):
+    #     return "input"
+
     # Check if the last message is a farewell or exit command
     # This is a simple check, you can expand it to include more variations
     if state["messages"][-1].content.lower() in [
@@ -161,6 +174,17 @@ graph.add_edge("response_getter", "query_getter")
 graph.add_edge("farewell", END)
 
 agent = graph.compile()
+
+
+###########################
+# Save the graph structure
+###########################
+
+
+output_path = os.path.join("src", "ex7", "graph_structure_ex7.png")
+agent.get_graph().draw_mermaid_png(output_file_path=output_path)
+print(f"Graph Structure saved as {output_path}")
+print("\n---\n")
 
 
 ################

@@ -1,8 +1,3 @@
-import os
-from typing import TypedDict, List
-from langgraph.graph import StateGraph
-from pprint import PrettyPrinter
-
 """
 Demonstrate How to Implement simple Sequential Graph in LangGraph
 
@@ -14,9 +9,7 @@ Objectives:
     different parts of the state.
 - Connect Nodes together to form a sequential flow.
 - Invoke the Graph and see how the state is transformed step-by-step.
-"""
 
-"""
 Problem Description:
 You are tasked with implementing a multi-node graph.
 
@@ -32,6 +25,12 @@ Requirements:
     Output: "Ade, welcome to the system! You are 30 years old \
         and your skills are: Python, Java, and C++."
 """
+
+import os
+from typing import TypedDict, List
+from langgraph.graph import StateGraph
+from pprint import PrettyPrinter
+
 
 printer = PrettyPrinter(indent=3, sort_dicts=False)
 

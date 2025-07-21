@@ -1,9 +1,3 @@
-import os
-import random
-from langgraph.graph import StateGraph, START, END
-from pprint import PrettyPrinter
-from typing import List, TypedDict
-
 """
 Demonstrate How to Implement Simple Looping Graph with LangGraph
 
@@ -13,9 +7,7 @@ Main Goal:
 Objectives:
 - Implement 'looping logic' to route the flow of data back to the node.
 - Create a 'conditional edge' to handle decision making and control graph flow.
-"""
 
-"""
 Problem Description:
 You are tasked with implementing a graph with 'loop'.
 
@@ -24,6 +16,12 @@ Requirements:
 initial_state = AgentState(username=10, counter=5, random_size=5, \
     random_numbers=[], message="")
 """
+
+import os
+import random
+from langgraph.graph import StateGraph, START, END
+from pprint import PrettyPrinter
+from typing import List, TypedDict
 
 
 printer = PrettyPrinter(indent=3, sort_dicts=False)

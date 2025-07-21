@@ -1,8 +1,3 @@
-import os
-from typing import TypedDict
-from langgraph.graph import StateGraph, START, END
-from pprint import PrettyPrinter
-
 """
 Demonstrate How to Implement Simple Conditional Graph in LangGraph
 
@@ -15,9 +10,7 @@ Objectives:
 - Design multiple nodes to perform different arithmetic operations: \
  (addition (+), substraction (-), multiplication (*), division (/))
 - Create a 'route node' to handle decision making and control graph flow.
-"""
 
-"""
 Problem Description:
 You are tasked with implementing a graph with 2 'conditional edges'.
 
@@ -26,6 +19,11 @@ Requirements:
 initial_state = AgentState(val1=10, operation='+', val2=5, val3=7, \
     operation2='-', val4=2, result1=0, result2=0)
 """
+
+import os
+from typing import TypedDict
+from langgraph.graph import StateGraph, START, END
+from pprint import PrettyPrinter
 
 
 printer = PrettyPrinter(indent=3, sort_dicts=False)

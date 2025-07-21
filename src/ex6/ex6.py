@@ -1,9 +1,3 @@
-import os
-import random
-from langgraph.graph import StateGraph, START, END
-from pprint import PrettyPrinter
-from typing import List, TypedDict
-
 """
 Demonstrating Looping Graph Implementation - Part2
 
@@ -14,9 +8,7 @@ Objectives:
 - Implement 'looping logic' to route the flow of data back to the node.
 - Create a 'conditional edge' to handle decision making and
     control graph flow.
-"""
 
-"""
 Problem Description:
     You are tasked with implementing "Guess A Number Game"
     with integrated hinter (Automatic 'higher' or 'lower' hinter).
@@ -39,6 +31,12 @@ Requirements:
     "Hello Student, your guesses were: 5, 10, 15. \
     You made 3 attempts. The number was 15."}
 """
+
+import os
+import random
+from langgraph.graph import StateGraph, START, END
+from pprint import PrettyPrinter
+from typing import List, TypedDict
 
 
 printer = PrettyPrinter(indent=3, sort_dicts=False)

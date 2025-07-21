@@ -1,11 +1,3 @@
-import os
-from typing import List, TypedDict, Union
-from langgraph.graph import StateGraph
-from IPython.display import display, Image
-from pprint import PrettyPrinter
-
-printer = PrettyPrinter(indent=3)
-
 """
 Demonstrate Multiple Inputs Graph
 
@@ -14,9 +6,7 @@ Objectives: Learn how to handle multiple inputs
 - Create a processing node that performs operations on list data
 - Setup LangGraph that processes and outputs computed results
 - Invoke the graph with structured inputs and retrieve outputs
-"""
 
-"""
 Problem Statement:
     You are tasked with creating a LangGraph application that processes \
     a list of numbers.
@@ -28,6 +18,15 @@ Requirements:
 - It should compute the appropriate operation on the numbers in the list.
 - The application should return the results in a structured format.
 """
+
+import os
+from typing import List, TypedDict, Union
+from langgraph.graph import StateGraph
+from IPython.display import display, Image
+from pprint import PrettyPrinter
+
+printer = PrettyPrinter(indent=3)
+
 
 #################################################
 # Agent State
